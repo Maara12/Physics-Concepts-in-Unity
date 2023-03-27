@@ -14,6 +14,9 @@ public class EarthGravityObject : MonoBehaviour
     [SerializeField]
     ForceObject objectToAttract;
 
+    [SerializeField]
+    List<ForceObject> allObjectsToAttract;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +28,11 @@ public class EarthGravityObject : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.LeftShift))
         {
-            Attract(objectToAttract);
+            foreach (ForceObject forceObject in allObjectsToAttract)
+            {
+                Attract(forceObject);
+            }
+            
         }
     }
 
