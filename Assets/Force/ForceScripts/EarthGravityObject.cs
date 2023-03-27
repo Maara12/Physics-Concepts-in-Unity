@@ -23,6 +23,16 @@ public class EarthGravityObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKey(KeyCode.LeftShift))
+        {
+            Attract(objectToAttract);
+        }
+    }
+
+    public void Attract(ForceObject objToAttract)
+    {
+        GravForce = objToAttract.mass * gravAcceleration;
+        objToAttract.ApplyGravitationalForce(GravForce);
         
     }
 }

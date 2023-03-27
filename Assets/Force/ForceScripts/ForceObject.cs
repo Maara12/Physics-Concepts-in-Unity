@@ -6,13 +6,13 @@ using UnityEngine;
 public class ForceObject : MonoBehaviour
 {
     [SerializeField]
-    float mass = 1f;
+    public float mass = 1f;
 
     [SerializeField]
-    float force = 5f;
+    public float force = 5f;
 
     [SerializeField]
-    float acceleration;
+    public float acceleration;
 
     [SerializeField]
     float gravAcceleration = 9.81f;
@@ -51,7 +51,22 @@ public class ForceObject : MonoBehaviour
         Vector3 currentPos = gameObject.transform.position;
         gameObject.transform.position = currentPos + new Vector3(x:acceleration * Time.deltaTime ,
             y: 0f, z: 0f);
-         
+
+        Debug.Log($"Displacement = {gameObject.transform.position - currentPos }");
+
+    }
+
+    public void ApplyGravitationalForce(float gravForce)
+    {
+        acceleration = gravForce / mass;
+
+        Vector3 currentPos = gameObject.transform.position;
+        gameObject.transform.position = currentPos + new Vector3(x:0f,
+            y:  -acceleration * Time.deltaTime, z: 0f);
+
+        Debug.Log($" G-Displacement = {gameObject.transform.position - currentPos }");
+
+       
     }
 
 }
